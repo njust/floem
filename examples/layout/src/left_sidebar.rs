@@ -2,7 +2,6 @@ use floem::{
     event::EventListener,
     peniko::Color,
     reactive::create_signal,
-    style::Position,
     view::View,
     views::{
         container, h_stack, label, scroll, v_stack, virtual_stack, Decorators, VirtualDirection,
@@ -42,6 +41,7 @@ pub fn left_sidebar_view() -> impl View {
     })
     .style(|s| {
         s.width(SIDEBAR_WIDTH)
+            .height_full()
             .border_right(1.0)
             .border_top(1.0)
             .border_color(Color::rgb8(205, 205, 205))
@@ -60,12 +60,7 @@ pub fn left_sidebar_view() -> impl View {
             .border_color(Color::rgb8(205, 205, 205))
     });
 
-    let content = h_stack((side_bar, main_window)).style(|s| {
-        s.position(Position::Absolute)
-            .inset_top(TOPBAR_HEIGHT)
-            .inset_bottom(0.0)
-            .width_full()
-    });
+    let content = h_stack((side_bar, main_window)).style(|s| s.height_full().width_full());
 
     let view = v_stack((top_bar, content)).style(|s| s.width_full().height_full());
 
