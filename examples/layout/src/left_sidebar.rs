@@ -24,13 +24,12 @@ pub fn left_sidebar_view() -> impl View {
                 .padding_top(3.0)
                 .padding_bottom(3.0)
                 .width(SIDEBAR_WIDTH)
-                .items_start()
                 .border_bottom(1.0)
                 .border_color(Color::rgb8(205, 205, 205))
         })
     }));
 
-    let side_bar = scroll( list.style(|s| s.flex_col().width(SIDEBAR_WIDTH - 1.0))).style(|s| {
+    let side_bar = scroll( list).style(|s| {
         s.width(SIDEBAR_WIDTH)
             .height_full()
             .border_right(1.0)
@@ -40,13 +39,10 @@ pub fn left_sidebar_view() -> impl View {
 
     let main_window = scroll(
         container(label(move || String::from("Hello world")).style(|s| s.padding(10.0)))
-            .style(|s| s.flex_col().items_start().padding_bottom(10.0)),
+            .style(|s| s.padding_bottom(10.0)),
     )
     .style(|s| {
-        s.flex_col()
-            .flex_basis(0)
-            .min_width(0)
-            .flex_grow(1.0)
+        s.width_full()
             .border_top(1.0)
             .border_color(Color::rgb8(205, 205, 205))
     });
